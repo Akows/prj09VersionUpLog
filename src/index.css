@@ -1,1 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 @import "tailwindcss";
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 기본(라이트) 테마 변수 */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-border: #e5e7eb;
+  --color-primary: #3b82f6;
+}
+
+/* 다크 테마 변수: .dark 클래스가 적용되면 값을 재정의 */
+.dark {
+  --color-bg: #1a202c;
+  --color-text: #ffffff;
+  --color-border: #4b5563;
+  --color-primary: #60a5fa;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
