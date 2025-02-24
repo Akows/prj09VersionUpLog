@@ -1,6 +1,6 @@
-// src/components/Header.tsx
 import React from 'react';
 import { FiSearch, FiEdit, FiSettings, FiSun } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   onSearchClick: () => void;
@@ -19,10 +19,11 @@ const Header: React.FC<HeaderProps> = React.memo(({ onSearchClick, onNewPostClic
           alt="Blog Logo" 
           className="w-10 h-10 object-cover"
         />
-        <span className="font-bold text-2xl">My Blog</span>
+        <span className="font-bold text-2xl">VersionUpLog</span>
       </div>
       {/* 버튼 그룹: 데스크탑은 텍스트 버튼, 모바일은 아이콘 버튼 */}
       <div className="flex items-center space-x-4">
+
         {/* 데스크탑: 텍스트 버튼 */}
         <div className="hidden md:flex items-center space-x-4">
           <button 
@@ -31,12 +32,14 @@ const Header: React.FC<HeaderProps> = React.memo(({ onSearchClick, onNewPostClic
           >
             검색
           </button>
-          <button 
-            onClick={onNewPostClick}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
-          >
-            새 글 작성
-          </button>
+          <Link to="/newpost">
+            <button 
+              onClick={onNewPostClick}
+              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+            >
+              새 글 작성
+            </button>
+          </Link>
           <button 
             onClick={onSettingsClick}
             className="text-gray-600 hover:text-blue-500 transition"
@@ -50,6 +53,7 @@ const Header: React.FC<HeaderProps> = React.memo(({ onSearchClick, onNewPostClic
             테마 전환
           </button>
         </div>
+
         {/* 모바일: 아이콘 버튼 */}
         <div className="flex md:hidden items-center space-x-3">
           <button 
@@ -58,12 +62,14 @@ const Header: React.FC<HeaderProps> = React.memo(({ onSearchClick, onNewPostClic
           >
             <FiSearch size={20} />
           </button>
-          <button 
-            onClick={onNewPostClick}
-            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
-          >
-            <FiEdit size={20} />
-          </button>
+          <Link to="/newpost">
+            <button 
+              onClick={onNewPostClick}
+              className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
+            >
+              <FiEdit size={20} />
+            </button>
+          </Link>
           <button 
             onClick={onSettingsClick}
             className="text-gray-600 hover:text-blue-500 transition"
