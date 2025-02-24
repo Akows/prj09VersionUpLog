@@ -3,9 +3,11 @@ import Header from './layout/Header';
 import PageNav from './layout/PageNav';
 import TagList from '../features/tags/components/TagList';
 import AllPosts from '../features/posts/components/AllPosts';
+import Search from '../features/search/components/search';
 
 const Home: React.FC = () => {
   const [activePage, setActivePage] = useState<'all' | 'series' | 'about'>('all');
+  const [activePage2, setActivePage2] = useState<'post' | 'search'>('post');
   const [selectedTag, setSelectedTag] = useState<string | undefined>(undefined);
 
   const tags = ['React', 'TypeScript', 'JavaScript', 'Node.js']; // 예시 태그
@@ -24,7 +26,39 @@ const Home: React.FC = () => {
     }
   };
 
+  const renderContent2 = () => {
+    switch (activePage2) {
+      case 'post':
+        return (
+          <div className="container mx-auto px-4">
+            <PageNav 
+              activePage={activePage} 
+              onChangePage={(page) => setActivePage(page as 'all' | 'series' | 'about')}
+            />
+            <div className="flex flex-col md:flex-row mt-6 gap-6">
+              <div className="md:w-1/4">
+                <TagList 
+                  tags={tags} 
+                  selectedTag={selectedTag} 
+                  tagCounts={tagCounts}
+                  onSelectTag={(tag) => setSelectedTag(tag)}
+                />
+              </div>
+              <div className="md:w-3/4">
+                {renderContent()}
+              </div>
+            </div>
+          </div>
+        );
+      case 'search':
+        return <Search setActivePage2={setActivePage2}/>;
+      default:
+        return null;
+    }
+  };
+
   const handleSearchClick = () => {
+    setActivePage2('search');
     console.log('검색 페이지로 이동');
   };
 
@@ -52,25 +86,10 @@ const Home: React.FC = () => {
         onSettingsClick={handleSettingsClick}
         onThemeToggle={handleThemeToggle} 
       />
-      <div className="container mx-auto px-4">
-        <PageNav 
-          activePage={activePage} 
-          onChangePage={(page) => setActivePage(page as 'all' | 'series' | 'about')}
-        />
-        <div className="flex flex-col md:flex-row mt-6 gap-6">
-          <div className="md:w-1/4">
-            <TagList 
-              tags={tags} 
-              selectedTag={selectedTag} 
-              tagCounts={tagCounts}
-              onSelectTag={(tag) => setSelectedTag(tag)}
-            />
-          </div>
-          <div className="md:w-3/4">
-            {renderContent()}
-          </div>
-        </div>
-      </div>
+
+      {renderContent2()}
+
+
     </div>
   );
 };
