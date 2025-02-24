@@ -1,47 +1,82 @@
 // src/components/Header.tsx
 import React from 'react';
+import { FiSearch, FiEdit, FiSettings, FiSun } from 'react-icons/fi';
 
 interface HeaderProps {
-  onSearchClick: () => void;   // 검색 페이지 이동
-  onNewPostClick: () => void;  // 새 글 작성
-  onSettingsClick: () => void; // 개인 설정
+  onSearchClick: () => void;
+  onNewPostClick: () => void;
+  onSettingsClick: () => void;
+  onThemeToggle: () => void;
 }
 
-const Header: React.FC<HeaderProps> = React.memo(({ onSearchClick, onNewPostClick, onSettingsClick }) => {
+const Header: React.FC<HeaderProps> = React.memo(({ onSearchClick, onNewPostClick, onSettingsClick, onThemeToggle }) => {
   return (
-    <header className="flex items-center justify-between p-4 bg-white border-b">
+    <header className="flex items-center justify-between px-6 py-4 bg-bg border-b shadow-md dark:bg-bg dark:text-text">
       {/* 로고 및 블로그명 */}
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center space-x-3">
         <img 
           src="/path/to/logo.png" 
           alt="Blog Logo" 
-          className="w-8 h-8 object-cover"
+          className="w-10 h-10 object-cover"
         />
-        <span className="font-bold text-xl">My Blog</span>
+        <span className="font-bold text-2xl">My Blog</span>
       </div>
-
-      {/* 우측 버튼들 */}
+      {/* 버튼 그룹: 데스크탑은 텍스트 버튼, 모바일은 아이콘 버튼 */}
       <div className="flex items-center space-x-4">
-        <button 
-          onClick={onSearchClick}
-          className="text-gray-600 hover:text-black"
-        >
-          검색
-        </button>
-        <button 
-          onClick={onNewPostClick}
-          className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          새 글 작성
-        </button>
-        <button 
-          onClick={onSettingsClick}
-          className="text-gray-600 hover:text-black"
-        >
-          개인 설정
-        </button>
-        {/* (제외) 알림 버튼 */}
-        {/* <button className="text-gray-600 hover:text-black">알림</button> */}
+        {/* 데스크탑: 텍스트 버튼 */}
+        <div className="hidden md:flex items-center space-x-4">
+          <button 
+            onClick={onSearchClick}
+            className="text-gray-600 hover:text-blue-500 transition"
+          >
+            검색
+          </button>
+          <button 
+            onClick={onNewPostClick}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+          >
+            새 글 작성
+          </button>
+          <button 
+            onClick={onSettingsClick}
+            className="text-gray-600 hover:text-blue-500 transition"
+          >
+            개인 설정
+          </button>
+          <button
+            onClick={onThemeToggle}
+            className="border px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          >
+            테마 전환
+          </button>
+        </div>
+        {/* 모바일: 아이콘 버튼 */}
+        <div className="flex md:hidden items-center space-x-3">
+          <button 
+            onClick={onSearchClick}
+            className="text-gray-600 hover:text-blue-500 transition"
+          >
+            <FiSearch size={20} />
+          </button>
+          <button 
+            onClick={onNewPostClick}
+            className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition"
+          >
+            <FiEdit size={20} />
+          </button>
+          <button 
+            onClick={onSettingsClick}
+            className="text-gray-600 hover:text-blue-500 transition"
+          >
+            <FiSettings size={20} />
+          </button>
+          <button
+            onClick={onThemeToggle}
+            className="border p-2 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+          >
+            <FiSun size={20} />
+          </button>
+        </div>
       </div>
     </header>
   );

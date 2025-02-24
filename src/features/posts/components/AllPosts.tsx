@@ -8,7 +8,7 @@ interface AllPostsProps {
 
 const AllPosts: React.FC<AllPostsProps> = ({ selectedTag }) => {
   return (
-    <div className="h-full">
+    <div className="p-4">
       <PostList selectedTag={selectedTag} />
     </div>
   );
