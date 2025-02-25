@@ -1,6 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const NewPostPage: React.FC = () => {
+interface NewPostPageProps {
+  // isEditing이 true면 기존 글을 수정하는 모드
+  // postId가 있을 경우, 해당 ID의 글을 불러와 초기 값에 세팅할 수 있음
+  isEditing?: boolean;
+  postId?: number;
+}
+
+const NewPostPage: React.FC<NewPostPageProps> = ({ isEditing, postId }) => {
   // 레이아웃: 'horizontal'(수평) / 'vertical'(수직)
   const [layout, setLayout] = useState<'horizontal' | 'vertical'>('horizontal');
 
@@ -9,7 +16,26 @@ const NewPostPage: React.FC = () => {
   const [tags, setTags] = useState('');
   const [content, setContent] = useState('');
 
-  // 레이아웃 토글 핸들러
+  // (예시) 글 데이터 불러오기
+  useEffect(() => {
+    if (isEditing && postId) {
+      // 실제 프로젝트에서는 API 호출로 기존 글 데이터를 가져옴
+      // 예: fetch(`/api/posts/${postId}`)
+      //     .then(res => res.json())
+      //     .then(data => {
+      //       setTitle(data.title);
+      //       setTags(data.tags.join(', '));
+      //       setContent(data.content);
+      //     });
+      console.log(`기존 글 (ID: ${postId}) 데이터를 불러와서 폼에 세팅`);
+      // 하드코딩 예시
+      setTitle('기존 글 제목 예시');
+      setTags('React, TypeScript');
+      setContent('기존 글 내용입니다...');
+    }
+  }, [isEditing, postId]);
+
+  // 레이아웃 토글
   const handleToggleLayout = () => {
     setLayout((prev) => (prev === 'horizontal' ? 'vertical' : 'horizontal'));
   };
@@ -17,16 +43,24 @@ const NewPostPage: React.FC = () => {
   // 뒤로가기 버튼
   const handleGoBack = () => {
     console.log('뒤로가기');
-    // 실제로는 라우팅/상태 변경 등
+    // 실제 라우팅/상태 변경 등
   };
 
-  // 출간하기 버튼
-  const handlePublish = () => {
-    console.log('출간하기');
-    console.log('제목:', title);
-    console.log('태그:', tags);
-    console.log('본문:', content);
-    // 실제로는 API 호출 등
+  // 출간하기 / 수정 완료 버튼
+  const handleSubmit = () => {
+    if (isEditing) {
+      console.log('수정 완료');
+      console.log('제목:', title);
+      console.log('태그:', tags);
+      console.log('본문:', content);
+      // 실제로는 PUT /api/posts/:postId 등의 API 호출
+    } else {
+      console.log('출간하기');
+      console.log('제목:', title);
+      console.log('태그:', tags);
+      console.log('본문:', content);
+      // 실제로는 POST /api/posts 등의 API 호출
+    }
   };
 
   return (
@@ -35,15 +69,15 @@ const NewPostPage: React.FC = () => {
       <header className="flex items-center justify-between px-6 py-4 border-b border-[var(--color-border)]">
         <button 
           onClick={handleGoBack} 
-          className="text-green-600 hover:underline"
+          className="text-blue-600 hover:underline"
         >
           뒤로가기
         </button>
         <button 
-          onClick={handlePublish} 
-          className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+          onClick={handleSubmit} 
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
         >
-          출간하기
+          {isEditing ? '수정 완료' : '출간하기'}
         </button>
       </header>
 
@@ -58,10 +92,10 @@ const NewPostPage: React.FC = () => {
       </div>
 
       {/* 메인 영역: 에디터 + 미리보기 */}
-      {/* flex-1을 주어 전체 화면을 차지하게 하고, layout에 따라 수평/수직 배치 */}
-      <div className={layout === 'horizontal'
-          ? 'flex flex-1 flex-row'
-          : 'flex flex-1 flex-col'
+      <div className={
+          layout === 'horizontal'
+            ? 'flex flex-1 flex-row'
+            : 'flex flex-1 flex-col'
         }
       >
         {/* 에디터 영역 */}
@@ -124,7 +158,7 @@ const NewPostPage: React.FC = () => {
           }
         >
           <h2 className="mb-4 font-bold text-xl">미리보기</h2>
-          <div className="w-full h-[50vh] overflow-auto border border-gray-300 dark:border-gray-600 rounded p-2">
+          <div className="w-full h-[50vh] overflow-auto rounded p-2">
             {/* 간단히 content를 표시. 실제 마크다운 파서 연동 시 대체 */}
             {content ? content : '작성 내용이 여기 미리보기로 표시됩니다.'}
           </div>
