@@ -1,25 +1,28 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
 import NewPostPage from './features/newPost/components/NewPostPage';
 import SeriesDetail from './features/series/components/SeriesDetail';
 import PostDetail from './features/posts/components/PostDetail';
+import { ModalProvider } from './contexts/ModalContext';
+import MainLayout from './components/layout/MainLayout';
+import Home from './Pages/Home';
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        {/* 새 글 작성 */}
-        <Route path="/new" element={<NewPostPage isEditing={false} />} />
-        {/* 기존 글 수정 */}
-        <Route path="/edit/:postId" element={<NewPostPage isEditing={true} />} />
-        <Route path="/series/:seriesId" element={<SeriesDetail />} />
-        <Route path="/post/:id" element={<PostDetail />} />
-      </Routes>
+      <ModalProvider>
+        <Routes>
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path="post/:id" element={<PostDetail />} />
+            <Route path="series/:seriesId" element={<SeriesDetail />} />
+          </Route>
+          <Route path="/newpost" element={<NewPostPage isEditing={false} />} />
+          <Route path="/edit/:postId" element={<NewPostPage isEditing={true} />} />
+        </Routes>
+      </ModalProvider>
     </Router>
   )
-
 };
 
 export default App;

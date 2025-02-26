@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 interface SearchProps {
-  setActivePage2: (page: string) => void;
+  setActivePage: (page: string) => void;
 }
 
 interface Post {
@@ -14,7 +14,7 @@ interface Post {
   commentCount: number;
 }
 
-const Search: React.FC<SearchProps> = ({ setActivePage2 }) => {
+const Search: React.FC<SearchProps> = ({ setActivePage }) => {
   const [keyword, setKeyword] = useState('');
   const [searchResults, setSearchResults] = useState<Post[]>([]);
 
@@ -50,7 +50,7 @@ const Search: React.FC<SearchProps> = ({ setActivePage2 }) => {
         {/* 상단 영역: 뒤로가기 버튼 + 안내 문구 */}
         <div className="flex justify-between items-center mb-6">
           <button
-            onClick={() => setActivePage2('post')}
+            onClick={() => setActivePage('post')}
             className="text-blue-500 hover:underline"
           >
             ← 뒤로가기
