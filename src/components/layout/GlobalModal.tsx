@@ -2,7 +2,7 @@ import React from 'react';
 import { useModalContext } from '../../contexts/ModalContext';
 import LoginModalContent from '../../features/auth/components/LoginModalContent';
 import PersonalSettingsModalContent from '../../features/auth/components/PersonalSettingsModalContent';
-import Modal from './Modal';
+import Modal from '../common/Modal';
 import DeleteConfirmModalContent from '../../features/posts/components/DeleteConfirmModalContent';
 
 const GlobalModal: React.FC = () => {

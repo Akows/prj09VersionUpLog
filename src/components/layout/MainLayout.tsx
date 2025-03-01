@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Header from './Header';
-import GlobalModal from '../common/GlobalModal';
+import GlobalModal from './GlobalModal';
 import { useModalContext } from '../../contexts/ModalContext';
 
 export interface HomeOutletContext {
