@@ -43,12 +43,6 @@ const PostDetail: React.FC = () => {
 
   const { openModal } = useModalContext();
 
-  const handleLoginClick = () => {
-    openModal('login');
-  };
-  const handleSettingsClick = () => {
-    openModal('settings');
-  };
   const handleDelete = () => {
     openModal('delete-post');
   };  

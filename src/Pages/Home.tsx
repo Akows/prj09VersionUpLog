@@ -5,7 +5,7 @@ import AllPosts from '../features/posts/components/AllPosts';
 import Search from '../features/search/components/Search';
 import SeriesList from '../features/series/components/SeriesList';
 import { useOutletContext } from 'react-router-dom';
-import { HomeOutletContext } from '../components/layout/MainLayout';
+import { HomeOutletContext } from '../layout/MainLayout';
 
 const Home: React.FC = () => {
   // HomeLayout에서 전달한 컨텍스트를 사용하여 activePage 상태를 가져옵니다.

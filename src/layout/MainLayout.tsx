@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
-import Header from './Header';
+import Header from '../components/layout/Header';
 import GlobalModal from './GlobalModal';
-import { useModalContext } from '../../contexts/ModalContext';
+import { useModalContext } from '../contexts/ModalContext';
 
 export interface HomeOutletContext {
   activePage: 'all' | 'series' | 'about' | 'search';

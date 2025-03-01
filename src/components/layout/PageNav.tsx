@@ -1,4 +1,3 @@
-// src/components/PageNav.tsx
 import React from 'react';
 
 interface PageNavProps {
