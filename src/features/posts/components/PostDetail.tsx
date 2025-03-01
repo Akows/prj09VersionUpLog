@@ -80,7 +80,7 @@ const PostDetail: React.FC = () => {
     <div className="max-w-5xl mx-auto px-4 py-8 mt-8">
       <div className="flex gap-8">
         {/* 좌측 (다운로드 버튼) */}
-        <div className="w-16 flex-shrink-0">
+        {/* <div className="w-16 flex-shrink-0">
           <button
             onClick={handleDownloadMarkdown}
             className="flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-green-500 transition"
@@ -88,7 +88,7 @@ const PostDetail: React.FC = () => {
             <FiDownload size={24} />
             <span className="text-xs mt-1">다운로드</span>
           </button>
-        </div>
+        </div> */}
         {/* 중앙 콘텐츠 영역 */}
         <div className="flex-1">
           <h1 className="text-3xl font-bold mb-2">{postData.title}</h1>
@@ -96,7 +96,13 @@ const PostDetail: React.FC = () => {
             <p className="text-sm text-gray-500 dark:text-gray-400">
               {postData.author} · {postData.createdAt}
             </p>
-            <div className="flex space-x-2">
+            <div className="flex space-x-2 mt-2">
+              <button
+                onClick={handleDownloadMarkdown}
+                className="px-3.5 py-1 border border-gray-600 rounded text-gray-600 dark:text-gray-300 hover:text-green-500 transition"
+              >
+                <FiDownload size={24} />
+              </button>
               <button
                 onClick={handleEdit}
                 className="px-3 py-1 border border-blue-500 text-blue-500 rounded hover:bg-blue-50 transition"
