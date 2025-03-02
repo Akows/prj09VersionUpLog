@@ -37,7 +37,7 @@ const Home: React.FC = () => {
         return <SeriesList seriesData={seriesData} />;
       }
       case 'about':
-        return <div className="p-4">자기소개 페이지 디자인</div>;
+        return <div className="p-4 bg-[var(--color-bg)] text-[var(--color-text)]">자기소개 페이지 디자인</div>;
       default:
         return null;
     }

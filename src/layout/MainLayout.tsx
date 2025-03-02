@@ -38,7 +38,7 @@ const HomeLayout: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-bg text-text dark:bg-bg dark:text-text">
+    <div className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)] dark:bg-[var(--color-bg)] dark:text-[var(--color-text)]">
       <Header 
         onSearchClick={handleSearchClick}
         onNewPostClick={handleNewPostClick}

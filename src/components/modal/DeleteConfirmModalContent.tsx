@@ -14,14 +14,14 @@ const DeleteConfirmModalContent: React.FC<DeleteConfirmModalContentProps> = ({
   return (
     <div>
       <h2 className="text-xl font-bold mb-4">{targetName} 삭제</h2>
-      <p className="mb-4 text-gray-600">
+      <p className="mb-4 text-[var(--color-text)]">
         정말 {targetName}을(를) 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.
       </p>
       <div className="flex justify-end space-x-2">
-        <button onClick={onClose} className="px-3 py-1 border rounded">
+        <button onClick={onClose} className="px-3 py-1 border border-[var(--color-border)] rounded">
           취소
         </button>
-        <button onClick={onConfirm} className="px-3 py-1 bg-red-500 text-white rounded">
+        <button onClick={onConfirm} className="px-3 py-1 bg-[var(--color-primary)] text-white rounded">
           삭제
         </button>
       </div>

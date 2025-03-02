@@ -23,7 +23,7 @@ const LoginModalContent: React.FC<LoginModalContentProps> = ({ onClose, onLoginS
       <label className="block mb-2">이메일</label>
       <input
         type="text"
-        className="w-full mb-4 p-2 border border-gray-300 rounded"
+        className="w-full mb-4 p-2 border border-[var(--color-border)] rounded"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
@@ -38,7 +38,7 @@ const LoginModalContent: React.FC<LoginModalContentProps> = ({ onClose, onLoginS
         <button onClick={onClose} className="px-3 py-1 border rounded">
           취소
         </button>
-        <button onClick={handleLogin} className="px-3 py-1 bg-blue-500 text-white rounded">
+        <button onClick={handleLogin} className="px-3 py-1 bg-[var(--color-primary)] text-white rounded">
           로그인
         </button>
       </div>

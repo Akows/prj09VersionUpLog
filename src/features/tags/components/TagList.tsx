@@ -10,8 +10,8 @@ interface TagListProps {
 
 const TagList: React.FC<TagListProps> = React.memo(({ tags, selectedTag, tagCounts, onSelectTag }) => {
   return (
-    <aside className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg shadow-sm">
-      <h2 className="font-bold text-lg mb-3 text-gray-800 dark:text-gray-100">태그</h2>
+    <aside className="p-4 var(--color-bg) dark:bg-gray-700 rounded-lg shadow-sm">
+      <h2 className="font-bold text-lg mb-3 var(--color-text) dark:text-gray-100">태그</h2>
       <ul className="space-y-2">
         {tags.map((tag) => (
           <li key={tag}>

@@ -85,7 +85,7 @@ const NewPostPage: React.FC<NewPostPageProps> = ({ isEditing, postId }) => {
       <div className="px-6 py-4 border-b border-[var(--color-border)] flex justify-end">
         <button 
           onClick={handleToggleLayout}
-          className="px-4 py-2 text-sm bg-gray-200 dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+          className="px-4 py-2 text-sm var(--color-bg) dark:bg-gray-700 rounded hover:bg-gray-300 dark:hover:bg-gray-600 transition"
         >
           {layout === 'horizontal' ? '수직 보기' : '수평 보기'}
         </button>
@@ -112,7 +112,7 @@ const NewPostPage: React.FC<NewPostPageProps> = ({ isEditing, postId }) => {
             </label>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none"
+              className="w-full p-2 border border-[var(--color-border)] dark:border-gray-600 rounded focus:outline-none"
               placeholder="제목을 입력하세요"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -125,7 +125,7 @@ const NewPostPage: React.FC<NewPostPageProps> = ({ isEditing, postId }) => {
             </label>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none"
+              className="w-full p-2 border border-[var(--color-border)] dark:border-gray-600 rounded focus:outline-none"
               placeholder="태그를 입력하세요 (쉼표로 구분)"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
@@ -142,7 +142,7 @@ const NewPostPage: React.FC<NewPostPageProps> = ({ isEditing, postId }) => {
 
           {/* 본문 입력 (실제 마크다운 에디터 대신 textarea로 예시) */}
           <textarea
-            className="w-full h-[50vh] border border-gray-300 dark:border-gray-600 rounded p-2 focus:outline-none"
+            className="w-full h-[50vh] border border-[var(--color-border)] dark:border-gray-600 rounded p-2 focus:outline-none"
             placeholder="여기에 마크다운을 작성하세요..."
             value={content}
             onChange={(e) => setContent(e.target.value)}

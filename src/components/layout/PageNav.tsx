@@ -13,18 +13,18 @@ const PageNav: React.FC<PageNavProps> = React.memo(({ activePage, onChangePage }
 
   return (
     <>
-      <section className="flex items-center justify-center mt-10 p-6 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md">
+      <section className="flex items-center justify-center mt-10 p-6 bg-[var(--color-bg)] rounded-lg shadow-md">
         <img 
           src="/path/to/profile.jpg"  
           alt="Profile" 
           className="w-20 h-20 rounded-full object-cover border-2 border-blue-500"
         />
         <div className="ml-4">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100">이유승</h2>
-          <p className="mt-2 text-lg font-medium text-gray-800 dark:text-gray-200">안녕하세요, 프론트엔드 개발을 좋아하는 개발자입니다.</p>
+          <h2 className="text-3xl font-bold text-[var(--color-text)]">이유승</h2>
+          <p className="mt-2 text-lg font-medium text-[var(--color-text)]">안녕하세요, 프론트엔드 개발을 좋아하는 개발자입니다.</p>
         </div>
       </section>
-      <nav className="flex justify-center py-4 border-b border-gray-300">
+      <nav className="flex justify-center py-4 border-b border-[var(--color-border)]">
         <button className={navButtonClasses('all')} onClick={() => onChangePage('all')}>
           전체 글
         </button>

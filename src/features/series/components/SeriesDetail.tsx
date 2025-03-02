@@ -97,14 +97,14 @@ const SeriesDetail: React.FC = () => {
       {/* 드래그 앤 드랍 모드 */}
       {isReorderMode ? (
         <div className="mb-6">
-          <p className="mb-2 text-gray-600 dark:text-gray-300">
+          <p className="mb-2 var(--color-text) dark:text-gray-300">
             포스팅 순서를 드래그하여 변경하세요.
           </p>
           <div className="space-y-2">
             {seriesData.posts.map((post) => (
               <div
                 key={post.day}
-                className="flex items-center p-2 border border-gray-200 dark:border-gray-700 rounded cursor-move hover:shadow-md transition"
+                className="flex items-center p-2 border var(--color-border) dark:border-gray-700 rounded cursor-move hover:shadow-md transition"
               >
                 <FiMove className="mr-2 text-gray-500 dark:text-gray-400" />
                 <span className="text-gray-800 dark:text-gray-100">
@@ -120,7 +120,7 @@ const SeriesDetail: React.FC = () => {
           {seriesData.posts.map((post) => (
             <li
               key={post.day}
-              className="border-b border-gray-200 dark:border-gray-700 pb-4"
+              className="border-b var(--color-border) dark:border-gray-700 pb-4"
             >
               <div className="flex items-start space-x-4">
                 <div className="w-32 h-20 bg-gray-100 dark:bg-gray-800 rounded overflow-hidden flex-shrink-0">
@@ -145,7 +145,7 @@ const SeriesDetail: React.FC = () => {
                   <h3 className="text-lg font-bold text-gray-800 dark:text-gray-100">
                     {post.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                  <p className="text-sm var(--color-text) dark:text-gray-300 mt-1">
                     {post.excerpt}
                   </p>
                   <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">

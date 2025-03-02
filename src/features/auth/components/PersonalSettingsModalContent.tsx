@@ -55,7 +55,7 @@ const PersonalSettingsModalContent: React.FC<PersonalSettingsModalContentProps> 
           <button onClick={onClose} className="px-3 py-1 border rounded">
             취소
           </button>
-          <button onClick={handleSave} className="px-3 py-1 bg-green-500 text-white rounded">
+          <button onClick={handleSave} className="px-3 py-1 bg-[var(--color-primary)] text-white rounded">
             저장
           </button>
         </div>

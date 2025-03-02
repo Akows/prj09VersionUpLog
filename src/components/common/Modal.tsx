@@ -18,7 +18,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         onClick={onClose}
       />
       {/* 실제 모달 박스 */}
-      <div className="relative z-10 bg-white dark:bg-gray-800 rounded shadow-lg p-6 w-full max-w-md">
+      <div className="relative z-10 bg-[var(--color-bg)] rounded shadow-lg p-6 w-full max-w-md">
         {children}
       </div>
     </div>,

@@ -64,14 +64,14 @@ const Search: React.FC<SearchProps> = ({ setActivePage }) => {
         <div className="flex items-center space-x-2">
           <input
             type="text"
-            className="flex-grow p-2 border border-gray-300 dark:border-gray-600 rounded focus:outline-none focus:border-blue-500"
+            className="flex-grow p-2 border var(--color-border) dark:border-gray-600 rounded focus:outline-none focus:border-blue-500"
             placeholder="검색어를 입력하세요..."
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
           <button
             onClick={handleSearch}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            className="px-4 py-2 var(--color-primary) text-white rounded hover:bg-blue-600"
           >
             검색
           </button>

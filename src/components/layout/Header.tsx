@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = React.memo(({
   onSettingsClick,
 }) => {
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-bg border-b shadow-md dark:bg-bg dark:text-text">
+    <header className="flex items-center justify-between px-6 py-4 bg-[var(--color-bg)] border-b border-[var(--color-border)] shadow-md text-[var(--color-text)]">
       <div className="flex items-center space-x-3">
         <img 
           src="/path/to/logo.png" 

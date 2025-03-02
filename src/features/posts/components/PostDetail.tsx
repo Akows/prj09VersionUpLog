@@ -87,7 +87,7 @@ const PostDetail: React.FC = () => {
         <div className="flex-1">
           <h1 className="text-3xl font-bold mb-2">{postData.title}</h1>
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm var(--color-text) dark:text-gray-400">
               {postData.author} · {postData.createdAt}
             </p>
             <div className="flex space-x-2 mt-2">
@@ -105,7 +105,7 @@ const PostDetail: React.FC = () => {
               </button>
               <button
                 onClick={handleDelete}
-                className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition"
+                className="px-3 py-1 var(--color-primary) text-white rounded hover:bg-red-600 transition"
               >
                 삭제
               </button>
@@ -122,8 +122,8 @@ const PostDetail: React.FC = () => {
             ))}
           </div>
           {postData.seriesTitle && (
-            <div className="mb-4 border border-gray-200 dark:border-gray-700 p-3 rounded">
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">
+            <div className="mb-4 border var(--color-border) dark:border-gray-700 p-3 rounded">
+              <p className="text-sm var(--color-text) dark:text-gray-400 mb-1">
                 시리즈에 속해있습니다
               </p>
               <p className="font-semibold text-gray-800 dark:text-gray-100">
