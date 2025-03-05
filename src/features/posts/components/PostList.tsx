@@ -1,5 +1,5 @@
-// src/components/PostList.tsx
 import React, { useState, useEffect } from 'react';
+import { fetchTestData } from '../hooks/usePatchPostData';
 
 interface Post {
   id: number;
@@ -60,6 +60,8 @@ const PostList: React.FC<PostListProps> = React.memo(({ selectedTag }) => {
         setPosts((prev) => [...prev, ...newPosts]);
       }
     })();
+
+    fetchTestData();
   }, [page, selectedTag, hasMore]);
 
   const handleScroll = () => {
