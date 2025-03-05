@@ -5,7 +5,7 @@ import SeriesDetail from './features/series/components/SeriesDetail';
 import PostDetail from './features/posts/components/PostDetail';
 import { ModalProvider } from './contexts/ModalContext';
 import MainLayout from './layout/MainLayout';
-import Home from './Pages/Home';
+import Home from './pages/Home';
 
 const App: React.FC = () => {
   return (

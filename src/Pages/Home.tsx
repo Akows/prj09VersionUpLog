@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PageNav from '../components/layout/PageNav';
 import TagList from '../features/tags/components/TagList';
-import AllPosts from '../features/posts/components/AllPosts';
+import Posts from '../features/posts/AllPosts';
 import Search from '../features/search/components/Search';
 import SeriesList from '../features/series/components/SeriesList';
 import { useOutletContext } from 'react-router-dom';
@@ -16,7 +16,7 @@ const Home: React.FC = () => {
   const renderContent = () => {
     switch (activePage) {
       case 'all':
-        return <AllPosts selectedTag={selectedTag} />;
+        return <Posts selectedTag={selectedTag} />;
       case 'series': {
         // 예시 시리즈 데이터
         const seriesData = [
