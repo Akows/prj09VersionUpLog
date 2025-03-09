@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiSearch, FiEdit, FiSettings, FiSun, FiLogIn } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../features/auth/hooks/useAuth';
 
 interface HeaderProps {
   onSearchClick: () => void;
@@ -10,13 +11,15 @@ interface HeaderProps {
   onSettingsClick: () => void;
 }
 
-const Header: React.FC<HeaderProps> = React.memo(({
+const HeaderComponent: React.FC<HeaderProps> = ({
   onSearchClick,
   onNewPostClick,
   onThemeToggle,
   onLoginClick,
   onSettingsClick,
 }) => {
+  const { user } = useAuth();
+
   return (
     <header className="flex items-center justify-between px-6 py-4 bg-[var(--color-bg)] border-b border-[var(--color-border)] shadow-md text-[var(--color-text)]">
       <div className="flex items-center space-x-3">
@@ -40,9 +43,11 @@ const Header: React.FC<HeaderProps> = React.memo(({
           <button onClick={onLoginClick} className="text-gray-600 hover:text-blue-500 transition">
             로그인
           </button>
-          <button onClick={onSettingsClick} className="text-gray-600 hover:text-blue-500 transition">
-            개인 설정
-          </button>
+          {user ? (
+            <button onClick={onSettingsClick} className="text-gray-600 hover:text-blue-500 transition">
+              개인 설정
+            </button>
+          ) : null}
           <button onClick={onThemeToggle} className="border px-3 py-1 rounded hover:bg-gray-200 dark:hover:bg-gray-700 transition">
             테마 전환
           </button>
@@ -69,6 +74,9 @@ const Header: React.FC<HeaderProps> = React.memo(({
       </div>
     </header>
   );
-});
+};
+
+const Header = React.memo(HeaderComponent);
+Header.displayName = "Header";
 
 export default Header;
