@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 interface PersonalSettingsModalContentProps {
   onClose: () => void;
@@ -17,10 +18,29 @@ const PersonalSettingsModalContent: React.FC<PersonalSettingsModalContentProps> 
   const [name, setName] = useState(currentProfile.name);
   const [intro, setIntro] = useState(currentProfile.intro);
   const [avatarUrl, setAvatarUrl] = useState(currentProfile.avatarUrl);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const { logout } = useAuth();
 
   const handleSave = () => {
     onUpdateProfile({ name, intro, avatarUrl });
     onClose();
+  };
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await logout();
+      if (error) {
+        setErrorMsg(error.message);
+        return;
+      }
+      // 로그아웃 후 필요한 후속 작업 호출 (예: onLogout prop)
+      onLogout();
+      onClose();
+    } catch (err) {
+      console.error("로그아웃 처리 중 에러 발생:", err);
+      setErrorMsg("로그아웃 처리 중 문제가 발생했습니다.");
+    }
   };
 
   return (
@@ -48,7 +68,7 @@ const PersonalSettingsModalContent: React.FC<PersonalSettingsModalContentProps> 
       />
 
       <div className="flex justify-between">
-        <button onClick={onLogout} className="px-3 py-1 border rounded hover:bg-gray-100">
+        <button onClick={handleLogout} className="px-3 py-1 border rounded hover:bg-gray-100">
           로그아웃
         </button>
         <div className="space-x-2">
@@ -60,6 +80,7 @@ const PersonalSettingsModalContent: React.FC<PersonalSettingsModalContentProps> 
           </button>
         </div>
       </div>
+      {errorMsg && <p className="mb-4 text-red-500">{errorMsg}</p>}
     </div>
   );
 };

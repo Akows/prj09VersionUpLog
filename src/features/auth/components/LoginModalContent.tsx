@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useAuth } from '../hooks/useAuth';
 
 interface LoginModalContentProps {
   onClose: () => void;
@@ -7,13 +8,19 @@ interface LoginModalContentProps {
 }
 
 const LoginModalContent: React.FC<LoginModalContentProps> = ({ onClose, onLoginSuccess }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('admin@admin.ad');
+  const [password, setPassword] = useState('admin');
+  const [errorMsg, setErrorMsg] = useState('');
 
-  const handleLogin = () => {
-    // 실제로는 API 호출
-    console.log('로그인 시도:', email, password);
-    onLoginSuccess({ name: '이유승' });
+  const { login } = useAuth();
+
+  const handleLogin = async () => {
+    const { data, error } = await login(email, password);
+    if (error) {
+      setErrorMsg(error.message);
+      return;
+    }
+    onLoginSuccess({ name: data?.user?.email || '익명' });
     onClose();
   };
 
@@ -34,6 +41,7 @@ const LoginModalContent: React.FC<LoginModalContentProps> = ({ onClose, onLoginS
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      {errorMsg && <p className="mb-4 text-red-500">{errorMsg}</p>}
       <div className="flex justify-end space-x-2">
         <button onClick={onClose} className="px-3 py-1 border rounded">
           취소
