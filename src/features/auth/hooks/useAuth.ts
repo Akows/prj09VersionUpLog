@@ -37,6 +37,13 @@ export function useAuth(): AuthHook {
     };
   }, []);
 
+  // 로그인 상태 유지 여부를 판별하기 위한 코드
+  // 기능 완성 후 삭제할 것!
+  // 유저 정보가 콘솔에 모두 노출됨!!
+  useEffect(() => {
+    console.log("Updated user:", user);
+  }, [user]);
+
   // 3. 로그인 기능 (signInWithPassword 사용)
   const login = async (email: string, password: string) => {
     setLoading(true);
