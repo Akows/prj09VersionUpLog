@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface NewPostPageProps {
   // isEditing이 true면 기존 글을 수정하는 모드
@@ -15,6 +16,8 @@ const NewPostPage: React.FC<NewPostPageProps> = ({ isEditing, postId }) => {
   const [title, setTitle] = useState('');
   const [tags, setTags] = useState('');
   const [content, setContent] = useState('');
+
+  const navigate = useNavigate();
 
   // (예시) 글 데이터 불러오기
   useEffect(() => {
@@ -42,8 +45,7 @@ const NewPostPage: React.FC<NewPostPageProps> = ({ isEditing, postId }) => {
 
   // 뒤로가기 버튼
   const handleGoBack = () => {
-    console.log('뒤로가기');
-    // 실제 라우팅/상태 변경 등
+    navigate('/');
   };
 
   // 출간하기 / 수정 완료 버튼
