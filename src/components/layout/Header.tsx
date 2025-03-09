@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiSearch, FiEdit, FiSettings, FiSun, FiLogIn } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../features/auth/hooks/useAuth';
 
 interface HeaderProps {
@@ -19,11 +19,16 @@ const HeaderComponent: React.FC<HeaderProps> = ({
   onSettingsClick,
 }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleClickLogo = () => {
+    navigate('/');
+  };
 
   return (
     <header className="flex items-center justify-between px-6 py-4 bg-[var(--color-bg)] border-b border-[var(--color-border)] shadow-md text-[var(--color-text)]">
       {/* 로고 및 타이틀 */}
-      <div className="flex items-center space-x-3">
+      <div className="flex items-center space-x-3" onClick={handleClickLogo}>
         <img src="/path/to/logo.png" alt="Blog Logo" className="w-10 h-10 object-cover" />
         <span className="font-bold text-2xl">VersionUpLog</span>
       </div>
