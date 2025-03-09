@@ -26,7 +26,7 @@ export function useAuth(): AuthHook {
     fetchSession();
 
     // 2. 인증 상태 변경 이벤트 구독 (onAuthStateChange)
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
     });
@@ -36,13 +36,6 @@ export function useAuth(): AuthHook {
       subscription.unsubscribe();
     };
   }, []);
-
-  // 로그인 상태 유지 여부를 판별하기 위한 코드
-  // 기능 완성 후 삭제할 것!
-  // 유저 정보가 콘솔에 모두 노출됨!!
-  useEffect(() => {
-    console.log("Updated user:", user);
-  }, [user]);
 
   // 3. 로그인 기능 (signInWithPassword 사용)
   const login = async (email: string, password: string) => {

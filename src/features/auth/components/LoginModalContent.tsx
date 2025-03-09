@@ -3,11 +3,9 @@ import { useAuth } from '../hooks/useAuth';
 
 interface LoginModalContentProps {
   onClose: () => void;
-  // 로그인 성공 시 동작할 함수 등
-  onLoginSuccess: (user: { name: string }) => void;
 }
 
-const LoginModalContent: React.FC<LoginModalContentProps> = ({ onClose, onLoginSuccess }) => {
+const LoginModalContent: React.FC<LoginModalContentProps> = ({ onClose }) => {
   const [email, setEmail] = useState('admin@admin.ad');
   const [password, setPassword] = useState('admin');
   const [errorMsg, setErrorMsg] = useState('');
@@ -15,12 +13,11 @@ const LoginModalContent: React.FC<LoginModalContentProps> = ({ onClose, onLoginS
   const { login } = useAuth();
 
   const handleLogin = async () => {
-    const { data, error } = await login(email, password);
+    const { error } = await login(email, password);
     if (error) {
       setErrorMsg(error.message);
       return;
     }
-    onLoginSuccess({ name: data?.user?.email || '익명' });
     onClose();
   };
 

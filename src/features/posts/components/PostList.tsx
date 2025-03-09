@@ -15,12 +15,12 @@ interface PostListProps {
   selectedTag?: string;
 }
 
-const PostList: React.FC<PostListProps> = React.memo(({ selectedTag }) => {
+const PostListComponent: React.FC<PostListProps> = ({ selectedTag }) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  const fetchPosts = async (tag: string | undefined, pageNum: number) => {
+  const fetchPosts = async (_tag: string | undefined, pageNum: number) => {
     const samplePosts: Post[] = [
       { 
         id: pageNum * 1, 
@@ -101,6 +101,9 @@ const PostList: React.FC<PostListProps> = React.memo(({ selectedTag }) => {
       )}
     </section>
   );
-});
+};
+
+const PostList = React.memo(PostListComponent);
+PostList.displayName = "Header";
 
 export default PostList;

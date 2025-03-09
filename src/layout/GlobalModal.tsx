@@ -13,7 +13,6 @@ const GlobalModal: React.FC = () => {
       {modalType === 'login' && (
         <LoginModalContent 
           onClose={closeModal}
-          onLoginSuccess={(user) => console.log('로그인 성공:', user)}
         />
       )}
       {modalType === 'settings' && (
