@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiDownload } from 'react-icons/fi';
 import { useModalContext } from '../../../contexts/ModalContext';
+import { useAuth } from '../../auth/hooks/useAuth';
 
 interface PostDetailData {
   id: number;
@@ -14,6 +15,9 @@ interface PostDetailData {
 }
 
 const PostDetail: React.FC = () => {
+
+  const { user } = useAuth();
+
   const postData: PostDetailData = {
     id: 123,
     title: 'Day 56 - 이슈 제보, 문서 양식 기여, 모던 JS 기억해보기',
@@ -93,22 +97,28 @@ const PostDetail: React.FC = () => {
             <div className="flex space-x-2 mt-2">
               <button
                 onClick={handleDownloadMarkdown}
-                className="px-3.5 py-1 border border-gray-600 rounded text-gray-600 dark:text-gray-300 hover:text-green-500 transition"
+                className="flex items-center justify-center px-3 py-1 border border-gray-600 text-gray-600 dark:text-gray-300 rounded hover:text-green-500 hover:bg-gray-50 transition"
               >
-                <FiDownload size={24} />
+                <FiDownload size={22} />
               </button>
-              <button
-                onClick={handleEdit}
-                className="px-3 py-1 border border-blue-500 text-blue-500 rounded hover:bg-blue-50 transition"
-              >
-                수정
-              </button>
-              <button
-                onClick={handleDelete}
-                className="px-3 py-1 var(--color-primary) text-white rounded hover:bg-red-600 transition"
-              >
-                삭제
-              </button>
+
+              {/* 수정 버튼 */}
+              {user && (
+                <>
+                  <button
+                    onClick={handleEdit}
+                    className="px-3 py-1 border border-blue-500 text-blue-500 rounded hover:bg-blue-50 transition"
+                  >
+                    수정
+                  </button>
+                  <button
+                    onClick={handleDelete}
+                    className="px-3 py-1 border border-red-500 text-red-600 dark:text-gray-300 rounded hover:bg-red-50 transition"
+                  >
+                    삭제
+                  </button>
+                </>
+              )}
             </div>
           </div>
           <div className="flex flex-wrap gap-2 mb-4">
